@@ -17,6 +17,10 @@ body {
   justify-content: center;
 }
 
+.formContainer h1 {
+  text-align: center;
+}
+
 .formContainer form {
   background-color: rgb(11, 153, 225);
   width: 70%;
@@ -33,4 +37,42 @@ body {
   align-items: center;
   justify-content: space-evenly;
   height: 30vh;
+}
+
+.formField {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+.formField input {
+  border: 1px solid grey;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.formField input:focus {
+  outline: none;
+}
+
+.formField label {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+button {
+  background-color: #57d280;
+  width: 60%;
+  margin-top: 10px;
+  border-radius: 5px;
+  padding: 10px;
+  color: antiquewhite;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.8s;
+}
+
+button:hover {
+  background-color: #1a6131;
 }
