@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.css";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
             {/* name属性..JSで使う! */}
             <input type="text" placeholder="PassWord" name="password" />
           </div>
+          <button className="submitButton">Login</button>
         </div>
       </form>
     </div>
