@@ -19,7 +19,9 @@ const App = () => {
   };
   const [formValues, setFormValues] = useState(initialValues);
   // Validation → エラー用のObjectを作成
-  const [formErrors, setFormErrors] = useState({});
+  const [formErrors, setFormErrors] = useState<ErrorsType>({});
+  // Submit を押したかどうか
+  const [isSubmit, setIsSubmit] = useState(false);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
@@ -32,6 +34,7 @@ const App = () => {
     event.preventDefault();
     // Validation → エラー用のObjectを作成
     setFormErrors(validate(formValues));
+    setIsSubmit(true);
   };
   const validate = (values: inittialType): Object => {
     const errors: ErrorsType = {};
@@ -43,7 +46,7 @@ const App = () => {
     if (!values.mailAddress) {
       errors.mailAddress = "input mailAddress";
     } else if (!regex.test(values.mailAddress)) {
-      errors.mailAddress = "input corect mailAddress";
+      errors.mailAddress = "input correct mailAddress";
     }
     if (!values.password) {
       errors.password = "input password";
@@ -59,7 +62,6 @@ const App = () => {
       <form onSubmit={(event) => handleSubmit(event)}>
         <h1>Login Form</h1>
         <hr />
-
         <div className="uiForm">
           <div className="formField">
             <label>User Name</label>
@@ -71,6 +73,7 @@ const App = () => {
               onChange={(event) => handleChange(event)}
             />
           </div>
+          <p className="errorMsg">{formErrors.username}</p>
           <div className="formField">
             <label>Mail Address</label>
             {/* name属性..JSで使う! */}
@@ -81,6 +84,7 @@ const App = () => {
               onChange={(event) => handleChange(event)}
             />
           </div>
+          <p className="errorMsg">{formErrors.mailAddress}</p>
           <div className="formField">
             <label>PassWord</label>
             {/* name属性..JSで使う! */}
@@ -91,7 +95,11 @@ const App = () => {
               onChange={(event) => handleChange(event)}
             />
           </div>
+          <p className="errorMsg">{formErrors.password}</p>
           <button className="submitButton">Login</button>
+          {Object.keys(formErrors).length === 0 && isSubmit && (
+            <div className="msgOK">Success Login</div>
+          )}
         </div>
       </form>
     </div>
